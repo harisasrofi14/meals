@@ -6,7 +6,7 @@ import com.example.mymeal.ui.detail.MealDetailEntity
 import com.example.mymeal.ui.main.MealEntity
 
 interface MealDataSource {
-    fun getMeals() : LiveData<List<MealEntity>>
 
-    fun getDetailMeal(id : String) : LiveData<MealDetailEntity>
+    fun getMeals(): LiveData<List<MealEntity>>
+    fun getDetailMeal(id: String): LiveData<MealDetailEntity>
 }

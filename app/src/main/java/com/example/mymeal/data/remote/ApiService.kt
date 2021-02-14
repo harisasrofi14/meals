@@ -11,12 +11,12 @@ interface ApiService {
     //https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood
     @GET("filter.php")
     fun getMeals(
-        @Query("c") c: String,
+            @Query("c") c: String,
     ): Call<MealsResponse>
 
     @GET("lookup.php")
     fun getDetail(
-        @Query("i") i: String,
+            @Query("i") i: String,
     ): Call<MealDetailResponse>
 
 }

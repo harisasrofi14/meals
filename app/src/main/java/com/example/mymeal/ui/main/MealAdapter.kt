@@ -3,7 +3,6 @@ package com.example.mymeal.ui.main
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mymeal.R
@@ -26,7 +25,7 @@ class MealAdapter : RecyclerView.Adapter<MealAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MealAdapter.ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_meal, viewGroup, false)
+                .inflate(R.layout.item_meal, viewGroup, false)
         return ViewHolder(view)
     }
 
@@ -42,9 +41,9 @@ class MealAdapter : RecyclerView.Adapter<MealAdapter.ViewHolder>() {
         fun bind(meal: MealEntity) {
             with(itemView) {
                 Glide.with(itemView.context)
-                    .load(meal.strMealThumb)
-                    .override(250, 250)
-                    .into(iv_thumbnail)
+                        .load(meal.strMealThumb)
+                        .override(250, 250)
+                        .into(iv_thumbnail)
                 tv_title.text = meal.strMeal
                 itemView.setOnClickListener {
                     onItemClickCallback?.onItemClicked(meal)

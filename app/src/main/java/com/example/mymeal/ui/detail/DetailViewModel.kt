@@ -6,5 +6,5 @@ import com.example.mymeal.data.MealRepository
 
 class DetailViewModel(private val mealRepository: MealRepository) : ViewModel() {
     fun getDetail(id: String): LiveData<MealDetailEntity> =
-        mealRepository.getDetailMeal(id)
+            mealRepository.getDetailMeal(id)
 }

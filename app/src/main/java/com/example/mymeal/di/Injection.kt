@@ -6,7 +6,6 @@ import com.example.mymeal.data.remote.RemoteDataSource
 object Injection {
     fun provideRepository(): MealRepository {
         val remoteDataSource = RemoteDataSource.getInstance()
-
         return MealRepository.getInstance(remoteDataSource)
     }
 }

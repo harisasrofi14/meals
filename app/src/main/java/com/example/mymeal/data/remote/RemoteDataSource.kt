@@ -18,9 +18,9 @@ class RemoteDataSource {
         private var instance: RemoteDataSource? = null
 
         fun getInstance(): RemoteDataSource =
-            instance ?: synchronized(this) {
-                instance ?: RemoteDataSource()
-            }
+                instance ?: synchronized(this) {
+                    instance ?: RemoteDataSource()
+                }
     }
 
     fun getMeals(callback: LoadMealsCallback) {
@@ -47,13 +47,13 @@ class RemoteDataSource {
         val client = ApiConfig.getApiService().getDetail(id)
         client.enqueue(object : Callback<MealDetailResponse> {
             override fun onResponse(
-                call: Call<MealDetailResponse>,
-                response: Response<MealDetailResponse>
+                    call: Call<MealDetailResponse>,
+                    response: Response<MealDetailResponse>
             ) {
                 if (response.isSuccessful) {
                     response.body()?.meals?.get(0).let {
                         if (it != null) {
-                            detailMeal =it
+                            detailMeal = it
                         }
                     }
                 }

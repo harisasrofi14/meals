@@ -5,21 +5,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mymeal.data.remote.RemoteDataSource
 import com.example.mymeal.data.remote.response.MealDetail
-import com.example.mymeal.data.remote.response.MealDetailResponse
 import com.example.mymeal.data.remote.response.Meals
 import com.example.mymeal.ui.detail.MealDetailEntity
 import com.example.mymeal.ui.main.MealEntity
 
 class MealRepository private constructor(private val remoteDataSource: RemoteDataSource) :
-    MealDataSource {
+        MealDataSource {
 
     companion object {
         @Volatile
         private var instance: MealRepository? = null
         fun getInstance(remoteDataSource: RemoteDataSource): MealRepository =
-            instance ?: synchronized(this) {
-                instance ?: MealRepository(remoteDataSource)
-            }
+                instance ?: synchronized(this) {
+                    instance ?: MealRepository(remoteDataSource)
+                }
     }
 
     override fun getMeals(): LiveData<List<MealEntity>> {
@@ -31,9 +30,9 @@ class MealRepository private constructor(private val remoteDataSource: RemoteDat
 
                 for (data in mealsResponse) {
                     val meals = MealEntity(
-                        data.strMeal,
-                        data.strMealThumb,
-                        data.idMeal
+                            data.strMeal,
+                            data.strMealThumb,
+                            data.idMeal
                     )
                     mealsList.add(meals)
                 }
@@ -88,61 +87,61 @@ class MealRepository private constructor(private val remoteDataSource: RemoteDat
 
             override fun onDetailMealReceived(detailResponse: MealDetail) {
                 val detail = MealDetailEntity(
-                    detailResponse.strMeal,
-                    detailResponse.strMealThumb,
-                    detailResponse.idMeal,
-                    detailResponse.strDrinkAlternate,
-                    detailResponse.strCategory,
-                    detailResponse.strArea,
-                    detailResponse.strInstructions,
-                    detailResponse.strTags,
-                    detailResponse.strYoutube,
-                    detailResponse.strIngredient1,
-                    detailResponse.strIngredient2,
-                    detailResponse.strIngredient3,
-                    detailResponse.strIngredient4,
-                    detailResponse.strIngredient5,
-                    detailResponse.strIngredient6,
-                    detailResponse.strIngredient7,
-                    detailResponse.strIngredient8,
-                    detailResponse.strIngredient9,
-                    detailResponse.strIngredient10,
-                    detailResponse.strIngredient11,
-                    detailResponse.strIngredient12,
-                    detailResponse.strIngredient13,
-                    detailResponse.strIngredient14,
-                    detailResponse.strIngredient15,
-                    detailResponse.strIngredient16,
-                    detailResponse.strIngredient17,
-                    detailResponse.strIngredient18,
-                    detailResponse.strIngredient19,
-                    detailResponse.strIngredient20,
-                    detailResponse.strMeasure1,
-                    detailResponse.strMeasure2,
-                    detailResponse.strMeasure3,
-                    detailResponse.strMeasure4,
-                    detailResponse.strMeasure5,
-                    detailResponse.strMeasure6,
-                    detailResponse.strMeasure7,
-                    detailResponse.strMeasure8,
-                    detailResponse.strMeasure9,
-                    detailResponse.strMeasure10,
-                    detailResponse.strMeasure11,
-                    detailResponse.strMeasure12,
-                    detailResponse.strMeasure13,
-                    detailResponse.strMeasure14,
-                    detailResponse.strMeasure15,
-                    detailResponse.strMeasure16,
-                    detailResponse.strMeasure17,
-                    detailResponse.strMeasure18,
-                    detailResponse.strMeasure19,
-                    detailResponse.strMeasure20,
+                        detailResponse.strMeal,
+                        detailResponse.strMealThumb,
+                        detailResponse.idMeal,
+                        detailResponse.strDrinkAlternate,
+                        detailResponse.strCategory,
+                        detailResponse.strArea,
+                        detailResponse.strInstructions,
+                        detailResponse.strTags,
+                        detailResponse.strYoutube,
+                        detailResponse.strIngredient1,
+                        detailResponse.strIngredient2,
+                        detailResponse.strIngredient3,
+                        detailResponse.strIngredient4,
+                        detailResponse.strIngredient5,
+                        detailResponse.strIngredient6,
+                        detailResponse.strIngredient7,
+                        detailResponse.strIngredient8,
+                        detailResponse.strIngredient9,
+                        detailResponse.strIngredient10,
+                        detailResponse.strIngredient11,
+                        detailResponse.strIngredient12,
+                        detailResponse.strIngredient13,
+                        detailResponse.strIngredient14,
+                        detailResponse.strIngredient15,
+                        detailResponse.strIngredient16,
+                        detailResponse.strIngredient17,
+                        detailResponse.strIngredient18,
+                        detailResponse.strIngredient19,
+                        detailResponse.strIngredient20,
+                        detailResponse.strMeasure1,
+                        detailResponse.strMeasure2,
+                        detailResponse.strMeasure3,
+                        detailResponse.strMeasure4,
+                        detailResponse.strMeasure5,
+                        detailResponse.strMeasure6,
+                        detailResponse.strMeasure7,
+                        detailResponse.strMeasure8,
+                        detailResponse.strMeasure9,
+                        detailResponse.strMeasure10,
+                        detailResponse.strMeasure11,
+                        detailResponse.strMeasure12,
+                        detailResponse.strMeasure13,
+                        detailResponse.strMeasure14,
+                        detailResponse.strMeasure15,
+                        detailResponse.strMeasure16,
+                        detailResponse.strMeasure17,
+                        detailResponse.strMeasure18,
+                        detailResponse.strMeasure19,
+                        detailResponse.strMeasure20,
                 )
                 detailMealResult.postValue(detail)
             }
 
             override fun onErrorResponse(error: String) {
-                Log.e("getDetailMeal",error)
+                Log.e("getDetailMeal", error)
             }
 
         }, id)

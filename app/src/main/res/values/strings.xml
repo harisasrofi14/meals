@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MyMeal</string>
+    <string name="instructions">Instructions</string>
+    <string name="ingredient">Ingredient</string>
+    <string name="content_desc_detail_thumbnail">Detail Thumbnail</string>
+    <string name="content_desc_thumbnail">Thumbnail</string>
 </resources>
