@@ -1,5 +1,7 @@
 package com.example.mymeal.data.remote
 
+import com.example.mymeal.data.remote.response.MealDetail
+import com.example.mymeal.data.remote.response.MealDetailResponse
 import com.example.mymeal.data.remote.response.Meals
 import com.example.mymeal.data.remote.response.MealsResponse
 import retrofit2.Call
@@ -21,15 +23,15 @@ class RemoteDataSource {
             }
     }
 
-    fun getSeafoodCategory(callback : LoadSeafoodCallback){
+    fun getMeals(callback: LoadMealsCallback) {
         val list = ArrayList<Meals>()
-        var client = ApiConfig.getApiService().getMeals(category)
-        client.enqueue(object : Callback<MealsResponse>{
+        val client = ApiConfig.getApiService().getMeals(category)
+        client.enqueue(object : Callback<MealsResponse> {
             override fun onResponse(call: Call<MealsResponse>, response: Response<MealsResponse>) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     response.body()?.meals?.let { list.addAll(it) }
 
-                    callback.onAllSeafoodReceived(list)
+                    callback.onAllMealReceived(list)
                 }
             }
 
@@ -40,9 +42,39 @@ class RemoteDataSource {
         })
     }
 
+    fun getDetail(callback: LoadDetailMealCallback, id: String) {
+        var detailMeal = MealDetail()
+        val client = ApiConfig.getApiService().getDetail(id)
+        client.enqueue(object : Callback<MealDetailResponse> {
+            override fun onResponse(
+                call: Call<MealDetailResponse>,
+                response: Response<MealDetailResponse>
+            ) {
+                if (response.isSuccessful) {
+                    response.body()?.meals?.get(0).let {
+                        if (it != null) {
+                            detailMeal =it
+                        }
+                    }
+                }
+                callback.onDetailMealReceived(detailMeal)
+            }
 
-    interface  LoadSeafoodCallback{
-        fun onAllSeafoodReceived(mealsResponse: ArrayList<Meals>)
-        fun onErrorResponse(error : String)
+            override fun onFailure(call: Call<MealDetailResponse>, t: Throwable) {
+                callback.onErrorResponse(t.message.toString())
+            }
+
+        })
+    }
+
+
+    interface LoadMealsCallback {
+        fun onAllMealReceived(mealsResponse: ArrayList<Meals>)
+        fun onErrorResponse(error: String)
+    }
+
+    interface LoadDetailMealCallback {
+        fun onDetailMealReceived(detailResponse: MealDetail)
+        fun onErrorResponse(error: String)
     }
 }

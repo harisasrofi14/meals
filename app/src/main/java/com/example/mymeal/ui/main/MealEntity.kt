@@ -1,7 +1,6 @@
-package com.example.mymeal.data.remote.response
+package com.example.mymeal.ui.main
 
-data class Meals(
-
+data class MealEntity(
     var strMeal: String? = null,
     var strMealThumb: String? = null,
     var idMeal: String? = null
